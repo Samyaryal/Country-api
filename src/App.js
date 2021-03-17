@@ -8,6 +8,7 @@ const App = () => {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
+    console.log('effect')
     axios
       .get('https://restcountries.eu/rest/v2/all')
       .then(response => {
@@ -27,9 +28,10 @@ const App = () => {
 
   return (
     <div>
-    <form onSubmit = {getSearch} />
+    <form onSubmit = {getSearch} >
     <input className="search-bar" type="text" value={search} onChange={updateSearch}/>
     <button className="search-button" type="submit">Search</button>
+    </form>
     <div className ="country">
     {countries.map(country => (
       <Country 
@@ -37,7 +39,6 @@ const App = () => {
       capital={country.capital}
       population={country.population}
       languages={country.languages}
-      flags ={country.flags}
       />
     ))}
     </div>
